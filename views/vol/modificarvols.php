@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
         <label for="foto">Foto</label>
-        <input type="file" class="form-control" img src="views/vol/img/" id="foto" name="foto" placeholder="Foto" value=<?php echo $row['foto'];?>>
+        <input type="file" class="form-control" img src="views/vol/img/" id="foto" name="foto" placeholder="Foto" value=<?php echo $row[$nomcomplet];?>>
     </div>
     <div class="form-group">
         <label for="nombre_places">Nombre places</label>
