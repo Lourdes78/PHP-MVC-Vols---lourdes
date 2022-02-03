@@ -68,7 +68,6 @@ class volController{
         $nomcomplet =  $nom . $today . $extensio;
         copy($_FILES['foto']['tmp_name'], "views/vol/img/" . $nomcomplet);
         $vol->foto = $nomcomplet;
-        $nomcomplet = $_POST['foto'];
         $vol->nombre_places = $_POST['nombre_places'];
         $vol->modificar();
         header("Location: index.php?controller=vol&action=mostrarvols");
