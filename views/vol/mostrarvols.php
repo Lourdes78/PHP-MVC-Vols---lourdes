@@ -24,7 +24,7 @@ while ($row = $vols->fetch_assoc()) {
 else if($_SESSION['rol'] == 'usuari'){
   while ($row = $vols->fetch_assoc()) {
   echo '<div class="card" style="width: 100rem;">';
-  echo "<img src='views/vol/img/" .$row['foto']."' class='card-img-top' alt='Card image cap'width=\"300\" height=\"500\">";
+  echo "<img src='views/vol/img/" .$row['foto']."'   class='card-img-top' alt='Card image cap' width=\"50\" height=\"750\">";
   echo '<ul class="list-group list-group-flush">';
   echo "<li class='list-group-item'></li>" . $row['origen'] ." - ". $row['desti'];
   echo "<li class='list-group-item'></li>" . $row['preu'] . "€";

@@ -1,12 +1,14 @@
 <?php
 require_once 'models/reserva.php';
-
+@session_start();
 class reservaController{
 
     public function mostrarreserves(){
+  
         $reserva = new reserva();
         $reserves = $reserva->mostrar();
         require_once 'views/reserva/mostrarreserves.php';
+      
     }
     public function insertarreserves(){        
         require_once 'views/reserva/insertarreserves.php';

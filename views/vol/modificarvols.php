@@ -1,4 +1,4 @@
-<form action="index.php?controller=vol&action=actualitzarvols" method="post">
+<form action="index.php?controller=vol&action=actualitzarvols" method="post" enctype="multipart/form-data">
 <div class="form-group">
         <input class="form-control" id="codi" name="codi" type="hidden" value=<?php echo $row['codi'];?>>
     </div>

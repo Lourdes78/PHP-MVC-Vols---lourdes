@@ -22,7 +22,7 @@ public function insertar(){
 }
 public function mostrar(){
     $conexion = new database();
-    $sql = "SELECT * FROM reserva";
+    $sql = "SELECT reserva.codi_usuari, origen, desti, data_anada, data_tornada, reserva.nombre_places FROM reserva inner join vol on reserva.codi_vol = vol.codi inner join usuari on reserva.codi_usuari = usuari.codi ";
     $a = $conexion->connect();
     $resultado = $a->query($sql);
     $a->close();
