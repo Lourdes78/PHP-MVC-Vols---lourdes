@@ -14,16 +14,26 @@ class reserva
 public function insertar(){
             
             $conexion = new database();
+            $disponible = "SELECT sum(nombre_places) from reserva";
+            $places = "SELECT vol.nombre_places from reserva inner join vol on reserva.codi_vol = vol.codi";
+            $a = $conexion->connect();
+            $valor1=$a->query($disponible);
+            $valor2 = $a->query($places);
+            $resultat = $valor2 - $valor1;
+            if($resultat>0){
             $sql = "INSERT INTO reserva (codi_vol,codi_usuari,data_anada,data_tornada,nombre_places) VALUES ('$this->codi_vol','$this->codi_usuari','$this->data_anada','$this->data_tornada','$this->nombre_places')";
             $a = $conexion->connect();
+            }
             $a->query($sql);
             $a->close();
     
 }
+
 public function mostrar(){
     $conexion = new database();
     $sql = "SELECT reserva.codi_usuari, origen, desti, data_anada, data_tornada, reserva.nombre_places FROM reserva inner join vol on reserva.codi_vol = vol.codi inner join usuari on reserva.codi_usuari = usuari.codi ";
     $a = $conexion->connect();
+    $resultado = $a->query($sql);
     $resultado = $a->query($sql);
     $a->close();
     return $resultado;

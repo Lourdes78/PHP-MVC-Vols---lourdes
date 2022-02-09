@@ -12,23 +12,44 @@
 </tr>
 <?php
 @session_start();
-while($row = $reserves->fetch_assoc()){
-    if($row['codi_usuari'] == $_SESSION['codi'] || $_SESSION['rol'] == ['admin'] ){
-    echo "<tr>";
-    echo "<td>".$row['origen']."</td>";
-    echo "<td>".$row['desti']."</td>";
-    echo "<td>".$row['data_anada']."</td>";
-    echo "<td>".$row['data_tornada']."</td>";
-    echo "<td>".$row['nombre_places']."</td>";
-    echo "<td><a href='index.php?controller=reserva&action=modificarreserves&codi='>Modificar</a></td>";
-    echo "<td><a href='index.php?controller=reserva&action=eliminarreserves&codi='>Eliminar</a></td>";
-    echo "<td><a href='index.php?controller=ticket&action=pagartickets&codi='>Pagar</a></td>";
-    echo "</tr>";
+
+//if($row['codi_usuari'] == $_SESSION['codi'] || $_SESSION['rol'] == 'usuari' ){
+
+
+    while($row = $reserves->fetch_assoc()){
+        if($_SESSION['rol'] == 'admin')/*||($row['codi_usuari'] == $_SESSION['codi']))*/{
+        echo "<tr>";
+        echo "<td>".$row['origen']."</td>";
+        echo "<td>".$row['desti']."</td>";
+        echo "<td>".$row['data_anada']."</td>";
+        echo "<td>".$row['data_tornada']."</td>";
+        echo "<td>".$row['nombre_places']."</td>";
+        echo "<td><a href='index.php?controller=reserva&action=modificarreserves&codi='>Modificar</a></td>";
+        echo "<td><a href='index.php?controller=reserva&action=eliminarreserves&codi='>Eliminar</a></td>";
+        echo "<td><a href='index.php?controller=ticket&action=pagartickets&codi='>Pagar</a></td>";
+        echo "</tr>";
+    
+
+    }else if($row['codi_usuari'] == $_SESSION['codi']) {
+
+    while($row = $reserves->fetch_assoc()){
+    
+        echo "<tr>";
+        echo "<td>".$row['origen']."</td>";
+        echo "<td>".$row['desti']."</td>";
+        echo "<td>".$row['data_anada']."</td>";
+        echo "<td>".$row['data_tornada']."</td>";
+        echo "<td>".$row['nombre_places']."</td>";
+        echo "<td><a href='index.php?controller=reserva&action=modificarreserves&codi='>Modificar</a></td>";
+        echo "<td><a href='index.php?controller=reserva&action=eliminarreserves&codi='>Eliminar</a></td>";
+        echo "<td><a href='index.php?controller=ticket&action=pagartickets&codi='>Pagar</a></td>";
+        echo "</tr>";
+    
+        }
+
 }
-}
-if(!$row['codi_usuari'] == $_SESSION['codi'] || $_SESSION['rol'] == ['admin'] ){
-    echo "VOSTÉ NO TÉ CAP RESERVA POT FER-LA <a href='index.php?controller=VOL&action=mostrarvols'>AQUÍ</a> ";
-}
+
+    }
 
 
 
