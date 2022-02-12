@@ -13,6 +13,11 @@ class reservaController
     }
     public function insertarreserves()
     {
+        $reserva = new reserva();
+        $reserves = $reserva->disponibilitat();
+        if($reserves>0){
+            $reserves = $reserva->insertar();
+        }
         require_once 'views/reserva/insertarreserves.php';
     }
     public function eliminarreserves()
