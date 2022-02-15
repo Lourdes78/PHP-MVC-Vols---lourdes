@@ -8,16 +8,18 @@ class reservaController
     {
         $reserva = new reserva();
         $reserves = $reserva->mostrar();
-        
+
         require_once 'views/reserva/mostrarreserves.php';
     }
     public function insertarreserves()
     {
         $reserva = new reserva();
-        $reserves = $reserva->disponibilitat();
-        if($reserves>0){
+        $reserves = $reserva->disponibilitatAnada();
+        $reserves2 = $reserva->disponibilitatTornada();
+        if ($reserves > 0 and $reserves2 < 0) {
             $reserves = $reserva->insertar();
         }
+        
         require_once 'views/reserva/insertarreserves.php';
     }
     public function eliminarreserves()

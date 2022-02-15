@@ -14,7 +14,7 @@
     @session_start();
 
     while ($row = $resultat->fetch_assoc()) {
-        if ($_SESSION['rol'] == 'admin' or $_SESSION['codi'] == $row['codi']) {
+      
             echo "<tr>";
             echo "<td>" . $row['codi'] . "</td>";
             echo "<td>" . $row['origen'] . "</td>";
@@ -26,10 +26,10 @@
             echo "<td>" . $row['total'] . "</td>";
             echo "<td>" . $row['data_ticket'] . "</td>";
             echo "</tr>";
-        } else {
-            echo "VOSTÉ NO TÉ CAP TICKET A MOSTRAR POT FER UNA RESERVA <a href='index.php?controller=VOL&action=mostrarvols'>AQUÍ</a> ";
+
+            
         }
-    }
+  
     ?>
 
 

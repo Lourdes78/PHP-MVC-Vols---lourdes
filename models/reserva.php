@@ -12,16 +12,19 @@ class reserva
     private $nombre_places;
 
 
-    public function disponibilitat()
+    public function disponibilitatAnada()
     {
         $conexion = new database();
-        $disponible = "SELECT sum(nombre_places) from reserva";
-        $places = "SELECT vol.nombre_places from reserva inner join vol on reserva.codi_vol = vol.codi";
         $a = $conexion->connect();
-        $valor1 = $a->query($disponible);
-        $valor2 = $a->query($places);
-        $resultat = $valor2 - $valor1;
-        $a->query($resultat);
+        $anada = "SELECT (vol.nombre_places - sum(reserva.nombre_places)) as total_places from reserva inner join vol on reserva.codi_vol = vol.codi where vol.codi = reserva.codi_vol group by data_anada";        
+        $a->query($anada);      
+        $a->close();
+    }
+    public function disponibilitatTornada(){
+        $conexion = new database();
+        $a = $conexion->connect();
+        $anada = "SELECT (vol.nombre_places - sum(reserva.nombre_places)) as total_places from reserva inner join vol on reserva.codi_vol = vol.codi where vol.codi = reserva.codi_vol group by data_tornada";        
+        $a->query($anada);      
         $a->close();
     }
     public function insertar()
@@ -37,7 +40,7 @@ class reserva
     public function mostrar()
     {
         $conexion = new database();
-        $sql = "SELECT reserva.codi_usuari, origen, desti, data_anada, data_tornada, reserva.nombre_places FROM reserva inner join vol on reserva.codi_vol = vol.codi inner join usuari on reserva.codi_usuari = usuari.codi ";
+        $sql = "SELECT reserva.codi, reserva.codi_usuari, reserva.codi_vol, origen, desti, data_anada, data_tornada, reserva.nombre_places FROM reserva inner join vol on reserva.codi_vol = vol.codi inner join usuari on reserva.codi_usuari = usuari.codi ";
         $a = $conexion->connect();
         $resultado = $a->query($sql);
         $resultado = $a->query($sql);
