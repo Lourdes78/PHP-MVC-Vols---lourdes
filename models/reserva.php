@@ -34,7 +34,9 @@ class reserva
     
     public function disp_tornada(){
         $conexion = new database();
-        $sql = "SELECT SUM(reserva.nombre_places) AS pt_reserv FROM vol INNER JOIN reserva on vol.codi = reserva.codi_vol WHERE data_tornada = '$this->data_tornada' and vol.nombre_places < '$this->nombre_places'";
+        $sql = "SELECT SUM(reserva.nombre_places) AS pt_reserv 
+        FROM vol INNER JOIN reserva on vol.codi = reserva.codi_vol 
+        WHERE data_tornada = '$this->data_tornada'";
         $a = $conexion->connect();
         $resultado = $a->query($sql);
         $a->close();
